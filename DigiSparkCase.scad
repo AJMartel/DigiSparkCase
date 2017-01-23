@@ -53,7 +53,7 @@ KeyHeight = 0.1;
 // How thick? (this subtracts from the wall thickness.
 KeyThickness = 0.05;
 // Where does the key end? (how far from each inside edge.)
-KeySetback = 0.15;
+KeySetBack = 0.15;
 KeywaySetBack = 0.1;
 KeywayThickness = KeyThickness + 0.005; // give a little relief
 KeywayDepth =0.6; 
@@ -77,11 +77,11 @@ module ClamShellBottom() {
     difference() {
         cube([OuterX, OuterY, OuterZ]);
 	translate([WallThickness + KeywaySetBack, WallThickness - KeywayThickness, OuterZ - KeyHeight * 1.1]) {
-	    cube([InnerX - 2.5 * KeywaySetBack, InnerY + 2.05 * KeywayThickness, InnerZ]);
+	    cube([InnerX - 2 * KeywaySetBack, InnerY + 2 * KeywayThickness, InnerZ]);
         }
 	// cut space for keys
 	translate([WallThickness - KeywayThickness, WallThickness + KeywaySetBack, OuterZ - KeyHeight * 1.1]) {
-	    cube([InnerX + 2.05 * KeywayThickness, InnerY - 2.5 * KeywaySetBack, InnerZ]);
+	    cube([InnerX + 2 * KeywayThickness, InnerY - 2 * KeywaySetBack, InnerZ]);
 	}
 	translate([WallThickness, WallThickness, WallThickness]) {
 	    cube([InnerX, InnerY, InnerZ*2]);
@@ -98,11 +98,11 @@ module ClamShellTop() {
     difference() {
         union() {
 	    cube([OuterX, OuterY, OuterZ]);
-	    translate([WallThickness + KeywaySetBack, WallThickness - KeywayThickness, OuterZ - 0.01]) {
-	        cube([InnerX - 2.5 * KeywaySetBack, InnerY + 2.05 * KeywayThickness, KeyHeight]);
+	    translate([WallThickness + KeySetBack, WallThickness - KeyThickness, OuterZ - 0.01]) {
+	        cube([InnerX - 2 * KeySetBack, InnerY + 2 * KeyThickness, KeyHeight]);
             }
-	    translate([WallThickness - KeywayThickness, WallThickness + KeywaySetBack, OuterZ - 0.01]) {
-	        cube([InnerX + 2.05 * KeywayThickness, InnerY - 2.5 * KeywaySetBack, KeyHeight]);
+	    translate([WallThickness - KeyThickness, WallThickness + KeySetBack, OuterZ - 0.01]) {
+	        cube([InnerX + 2 * KeyThickness, InnerY - 2 * KeySetBack, KeyHeight]);
             }
 	}
 	translate([WallThickness, WallThickness, WallThickness]) {
@@ -120,8 +120,8 @@ scale([25.4,25.4,25.4]) {
     union()
     {
         color("red") ClamShellBottom();
-	translate([OuterX,0,2.5*OuterZ])
-	    rotate([0,180,0])
+	translate([0,OuterY,2.1*OuterZ])
+	    rotate([0,180,180])
 	        color("grey") ClamShellTop();
     }
 }
